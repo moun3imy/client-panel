@@ -1,0 +1,244 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstset{frame=tb,
+  language=Javascript,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+
+
+
+\title{\textbf{Angular Training Notes}}
+\author{Mounaim Zaryouhi \\ email: \href{mailto:m.zaryouhi@ancfcc.gov.ma}{m.zaryouhi@ancfcc.gov.ma}}
+\date{20 February 2020}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+\begin{itemize}
+    \item 
+    Typescript is a superset of Javascript
+    \item
+    Compiles to Javascript
+    \item
+    Comes with types : number,string,boolean...etc.
+    \item Angular enables \textbf{microservices} architecture on the front end part
+    \item Microservices allow Front End and Back End decoupling, with communication through APIs
+    \item AngularJS is only for version 1
+    \item from version 2, it's called only \textbf{Angular}
+    \item there is no version 3, Angular 2 to Angular 4 directly
+    \item Angular enables Single Page Applications
+    \item La structure d'un URL : 
+    \begin{verbatim}
+        URL = URI + Segment (Static or Dynamic) + queries
+       \\ Example : https://www.google.com/search/ma?q=---------&s=-----------
+       URI : www.google.com
+       search: static
+       ma : dynamic
+       q,s : queries
+    \end{verbatim}
+    
+    
+    
+\end{itemize}
+
+
+\section{Setting up Environment}
+\begin{itemize}
+    \item Install Node JS
+    \item Install Visual Studio Code
+    \item check node is installed : Run command \textit{node -v}
+    \item check npm is installed : Run command \textit{npm -v}
+    \item install Agular :  \textit{npm install -g angular/cli} 
+    \item check Angular is installed : \textit{ng version} 
+    \item -g option makes npm install packages globally
+    \item generate new project
+    \\ \textbf{Example : } Let's create a project called ancfcc-basic :
+    
+     run this command : \textit{ng new ancfcc-basic}
+    \item Go to Visual Studio Code and open the folder ancfcc-basic
+    \item Go to ancfcc-basic folder in the command line and launch the app ancfcc-basic with : \textit{ng serve --open}
+    \item if you want to change the default port(4200), do it with the command : \textit{ng serve --open --port 5500}
+    \\5500 is the new port
+    \item Setting up JSON Server database :
+    \begin{enumerate}
+        \item create json file database : 
+        \\ \textit{touch db.json}
+        \item launch the server : 
+        \\ make json server extension to watch the file : 
+        \\ json-server watch db.json --port 5000
+    \end{enumerate}
+    
+\end{itemize}
+\section{HTML Form validation}
+\begin{itemize}
+    \item required
+    \item minlength
+    \item maxlength
+    \item use the model ngModel : to validate each input alone : ngModel.errors
+    \\ use variables in HTML with : 
+   
+    \begin{lstlisting}
+       Example :  <input required [(ngModel)]="article.title"  #mytitle = "[(ngModel)]">
+        \end{lstlisting}
+    \item ngForm : to validate the whole form, if only one input is invalid, the ngForm.invalid will be true
+    \item use ngClass to change the class of HTML elements
+        Example : 
+        display is a boolean variable in the componenent TypeScript class
+        \begin{lstlisting}
+        ngClass = "{
+            'btn-success' : !display,
+            'btn-dark'  : display
+        
+        }"
+        \end{lstlisting}
+        
+        
+\end{itemize}
+
+\section{installing components and services}
+\begin{itemize}
+    \item generate new component : Run this command \\ \textit{ng g c name\_component\_here}
+    \item generate new service : Run this command \\ \textit{ng g s name\_service\_here}
+    \item 
+    \begin{verbatim}
+            ng g c components/navbar --spec=false
+
+    \end{verbatim}
+
+\end{itemize}
+
+\section{Some Javascript and TypeScript tips}
+\begin{itemize}
+    \item \textit{var} : declaring variables on global scope
+    \item \textit{let} : declaring variables on \textbf{current scope only}
+    \item \textit{const} : declaring constants
+    \item Templates Strings : Concatenate strings using \$
+    \\ \textbf{Example : } 
+    \begin{lstlisting}  
+        console.log('Salam \$\{variable\}')
+    \end{lstlisting}
+    \item anonymous functions
+    \item arrow functions
+    
+    \item Callbacks : provides asynchronous programming.
+    \item delete element from list : 
+     \begin{lstlisting}  
+        array.splice(indexofElement)
+    \end{lstlisting}
+   
+    \item !! : checking for emptiness 
+    \\ \textbf{Example : } 
+   
+    \begin{lstlisting}  
+        if(!!string_here)
+    \end{lstlisting}
+    will check if string\_here is empty and return true, false otherwise
+    
+\end{itemize}
+\section{Some Google Cloud Products Tips}
+\begin{itemize}
+    \item Firebase vs FireStorage :
+    \begin{itemize}
+        \item Firebase is a plateform : many products
+        \item one product is \textit{FireStore} database
+        \item FireAuth is a product of FireBase that provides security for FireStore
+    \end{itemize}
+\end{itemize}
+
+\section{Some Bootstrap Tips}
+\begin{itemize}
+    \item Sizes : 
+    \begin{itemize}
+        \item lg : Large screens : TV
+        \item md : Medium screens : PCs
+        \item sm : Small screens : tablets
+    \end{itemize}
+    \item bootswatch : a superset of bootstrap with ready themes
+\end{itemize}
+
+\section{Some good visual studio extensions}
+\begin{itemize}
+    \item Bracket Pair Colorizer : colorising brackets in code
+    \item Bootstrap 4 snippets : provides Bootstrap ready code snippets directly in Visual Studio Code
+    \item Auto Import
+\end{itemize}
+\section{Some nice npm packages}
+\begin{itemize}
+    \item sweetalert2
+    \item emmet
+    \item json-server install it with \textit{npm install json-server}
+    
+\end{itemize}
+
+\section{Some Angular tips}
+\begin{itemize}
+    \item ng-template
+    \item router-outler
+    \\Example : \begin{verbatim}
+        <router-outlet> </router-outlet>
+    \end{verbatim}
+    Angular will look for the proper route in app.module.ts stored in array variable \textit{routes} and 
+    
+    \item Configure bootstrap : angular.json and build/scripts and copy path to CSS from node\_modules package
+    \item Angular provides SPA, so while developing, pages should not refresh 
+    \item filtering with pipes is supported 
+    \begin{verbatim}
+        {{lastName | capitalize}} will capitalize the variable lastName
+        \\Some pipes : uppercase, lowercase, currency, date,...etc 
+    \end{verbatim}
+    \item FormModule : for form driven *ngForm
+    \item ReactiveFormsModule : reactive forms 
+\end{itemize}
+\section{Good ressources}
+\begin{itemize}
+    \item Npm packages : \url{https://www.npmjs.org}
+    \item Open source projects : \url{www.github.com}
+    \item Regex validation : \url{https://www.regex101.com}
+    \item Icons and fonts : \url{https://fontawesome.com/v4.7.0/}
+    \item JSON viewer, a chrome pluggin for rendering pretty JSON data : \url{https://chrome.google.com/webstore/detail/json-viewer/gbmdgpbipfallnflgajpaliibnhdgobh}
+    \item Fake online REST API for demos :  \url{https://jsonplaceholder.typicode.com/}
+    \item Mr Mohammed Idbrahim Youtube Channel  : \url{https://www.youtube.com/channel/UCAeBi3qwZ9pj52yYHm3WEZQ}
+    \item Mr Mohammed Idbrahim website : \url{https://brightcoding.teachable.com/}
+    \item UIKit \url{www.getuikit.com} 
+    \item Discord \url{www.discordapp.com} for efficient team communication
+\end{itemize}
+
+\end{document}
