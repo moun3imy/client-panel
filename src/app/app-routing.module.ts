@@ -18,6 +18,7 @@ const routes: Routes = [
   {path:"**", component : PageNotFoundComponent},
   //this line should be the last
   //never prefix the routes with '/'
+  //when navigating in the html via routerLink, include the '/' in the link
 
 ];
 
